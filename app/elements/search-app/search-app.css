@@ -1,0 +1,156 @@
+:host {
+  font-family: Roboto;
+}
+.container {
+  width: 810px;
+}
+.header h1 {
+  width: 100%;
+  text-align: center;
+  font-weight: 400;
+}
+.results h3 {
+  margin-left: 16px;
+  font-weight: 400;
+}
+.row {
+  margin-bottom: 32px;
+}
+.column {
+  width: 248px;
+  margin: 0px 0px 8px;
+}
+.mobile {
+  width: 100%;
+}
+.mobile .row {
+  padding: 0px 16px;
+}
+.mobile .column {
+  width: 100%;
+}
+.slider-box {
+  padding-top: 0px;
+}
+.slider-box .label {
+  padding: 4px;
+  text-align: center;
+}
+paper-checkbox {
+  margin-right: 8px;
+  margin-bottom: -4px;
+}
+paper-checkbox.active::shadow #ink[checked] {
+  color: #30d5ad;
+}
+paper-checkbox.active::shadow #checkbox {
+  border-color: #30d5ad;
+}
+paper-checkbox.active::shadow #ink {
+  color: #30d5ad;
+}
+paper-spinner::shadow .circle {
+  border-color: #30d5ad;
+}
+paper-checkbox.gray::shadow #ink[checked] {
+  color: #9faaae;
+}
+paper-checkbox.gray::shadow #checkbox {
+  border-color: #9faaae;
+}
+paper-checkbox.gray::shadow #ink {
+  color: #9faaae;
+}
+paper-interval-slider::shadow #sliderBar::shadow #progress {
+  background-color: #4fc2f8;
+}
+paper-interval-slider::shadow .knobInner {
+  background-color: #4fc2f8;
+}
+paper-interval-slider::shadow #knobInner::before {
+  background-color: #4fc2f8;
+}
+.active {
+  color: #30d5ad;
+}
+.gray {
+  color: #9faaae;
+}
+.search {
+  height: 56px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+}
+.search .icon {
+  width: 56px;
+}
+.search paper-button {
+  min-width: 119px;
+  margin: 0px 0px 0px 16px;
+  border-radius: 0px;
+  background: #4fc2f8;
+  color: #fff;
+}
+.search paper-button:hover {
+  background: #30d5ad;
+}
+.search paper-button::shadow #ripple {
+  color: #30d5ad;
+}
+.search paper-button::shadow .button-content {
+  height: 56px;
+  padding: 0px;
+}
+.card {
+  background-color: #fff;
+  width: 100%;
+  border-radius: 2px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+  min-height: 104px;
+  margin-bottom: 4px;
+}
+.card .section {
+  padding: 24px 16px;
+}
+.card .avatar {
+  border-radius: 100%;
+}
+.card .info {
+  margin: -4px 0 0 8px;
+}
+.card .info .name {
+  font-size: 14px;
+  margin: 0 0 14px 4px;
+}
+.card .info rating-bar::shadow core-icon {
+  color: #ecf0f1;
+}
+.card .prof div {
+  float: left;
+}
+.card .prof .price {
+  font-size: 10px;
+}
+.card .language {
+  font-size: 14px;
+}
+.card .language div {
+  border-radius: 2px;
+  padding: 5px 11px;
+  margin: 0px 2px;
+  border: 1px solid #dee3e6;
+}
+.card .status {
+  width: 24px;
+  height: 24px;
+  border-radius: 100%;
+  color: #fff;
+  background: #30d5ad;
+  margin: -6px 0 0 -18px;
+  z-index: 1;
+}
+.card .status core-icon {
+  width: 15px;
+  height: 15px;
+  margin-left: 4.5px;
+}

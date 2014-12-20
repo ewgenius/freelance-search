@@ -1,0 +1,189 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../bower_components/core-media-query/core-media-query.html">
+<link rel="import" href="../../bower_components/core-menu/core-menu.html">
+<link rel="import" href="../../bower_components/core-label/core-label.html">
+<link rel="import" href="../../bower_components/core-icon/core-icon.html">
+<link rel="import" href="../../bower_components/core-icons/core-icons.html">
+<link rel="import" href="../../bower_components/core-icons/image-icons.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-dropdown/paper-dropdown.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../bower_components/paper-slider/paper-slider.html">
+<link rel="import" href="../../bower_components/paper-shadow/paper-shadow.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-spinner/paper-spinner.html">
+<link rel="import" href="../../bower_components/paper-tag-input/paper-tag-input.html">
+<link rel="import" href="../../bower_components/core-image/core-image.html">
+<link rel="import" href="../../bower_components/paper-interval-slider/paper-interval-slider.html">
+
+<link rel="import" href="../../elements/rating-bar/rating-bar.html">
+
+
+<polymer-element name="search-app">
+  <template>
+    <link rel="stylesheet" type="text/css" href="search-app.css">
+
+    <core-media-query query="max-width: 810px" queryMatches="{{mobile}}"></core-media-query>
+
+    <div vertical layout center>
+      <div class="container {{ (mobile || dataLoaded) ? 'mobile' : '' }}" vertical layout>
+        <div class="header" horizontal layout center>
+          <h1>Freelance Search</h1>
+        </div>
+        <div class="panel" vertical?="{{!(dataLoaded && !mobile)}}" horizontal?="{{dataLoaded && !mobile}}" layout>
+          <div flex?="{{dataLoaded && !mobile}}" class="filters">
+            <div class="row" horizontal?="{{!(mobile || dataLoaded)}}" vertical?="{{(mobile || dataLoaded)}}" layout
+                 justified>
+              <div class="column" vertical layout>
+                <paper-dropdown-menu label="Source Language">
+                  <paper-dropdown class="dropdown">
+                    <core-menu class="menu">
+                      <paper-item>Croissant</paper-item>
+                      <paper-item>Donut</paper-item>
+                      <paper-item>Financier</paper-item>
+                      <paper-item>Madeleine</paper-item>
+                    </core-menu>
+                  </paper-dropdown>
+                </paper-dropdown-menu>
+              </div>
+              <div class="column" vertical layout>
+                <paper-dropdown-menu label="Target Language">
+                  <paper-dropdown class="dropdown">
+                    <core-menu class="menu">
+                      <paper-item>Croissant</paper-item>
+                      <paper-item>Donut</paper-item>
+                      <paper-item>Financier</paper-item>
+                      <paper-item>Madeleine</paper-item>
+                    </core-menu>
+                  </paper-dropdown>
+                </paper-dropdown-menu>
+
+                <core-label class="{{ nativeLanguage ? 'active' : 'gray' }}">
+                  <paper-checkbox class="{{ nativeLanguage ? 'active' : 'gray' }}"
+                                  checked="{{nativeLanguage}}"></paper-checkbox>
+                  <span>Native language</span>
+                </core-label>
+              </div>
+              <div class="column" vertical layout>
+                <paper-dropdown-menu label="Type of Service">
+                  <paper-dropdown class="dropdown">
+                    <core-menu class="menu">
+                      <paper-item>Croissant</paper-item>
+                      <paper-item>Donut</paper-item>
+                      <paper-item>Financier</paper-item>
+                      <paper-item>Madeleine</paper-item>
+                    </core-menu>
+                  </paper-dropdown>
+                </paper-dropdown-menu>
+              </div>
+            </div>
+
+            <div class="row" horizontal?="{{!(mobile || dataLoaded)}}" vertical?="{{(mobile || dataLoaded)}}" layout
+                 justified>
+
+              <div class="column" vertical layout>
+                <paper-dropdown-menu label="Source Language">
+                  <paper-dropdown class="dropdown">
+                    <core-menu class="menu">
+                      <paper-item>Croissant</paper-item>
+                      <paper-item>Donut</paper-item>
+                      <paper-item>Financier</paper-item>
+                      <paper-item>Madeleine</paper-item>
+                    </core-menu>
+                  </paper-dropdown>
+                </paper-dropdown-menu>
+              </div>
+
+              <div class="column" vertical layout>
+                <core-label class="slider-box" vertical layout>
+                  <div class="title gray">Price c/word</div>
+                  <div horizontal layout>
+                    <div class="label" flex>{{minImmediate}}</div>
+                    <paper-interval-slider flex six min="0.01" max="1" minInterval="0.01" valueA="{{minPrice}}"
+                                           valueB="{{maxPrice}}" immediateValueA="{{minImmediate}}"
+                                           immediateValueB="{{maxImmediate}}" step="0.01"></paper-interval-slider>
+                    <div class="label" flex>{{maxImmediate}}</div>
+                  </div>
+                </core-label>
+              </div>
+
+              <div class="column" vertical layout>
+                <br>
+                <core-label class="{{ privateProfiles ? 'active' : 'gray' }}">
+                  <paper-checkbox class="{{ privateProfiles ? 'active' : 'gray' }}"
+                                  checked="{{privateProfiles}}"></paper-checkbox>
+                  <span>Private profile only</span>
+                </core-label>
+              </div>
+            </div>
+
+          </div>
+
+          <div flex?="{{dataLoaded && !mobile}}" three class="dataLoaded">
+            <div class="row" horizontal layout>
+              <div class="search" flex horizontal layout>
+                <div horizontal layout center-center class="icon">
+                  <core-icon icon="search"></core-icon>
+                </div>
+                <paper-tag-input tags="{{tags}}" tagString="{{searchString}}" flex four></paper-tag-input>
+                <paper-button on-click="{{search}}">Search</paper-button>
+              </div>
+            </div>
+
+            <div class="row results">
+              <h3>Search results</h3>
+
+              <template repeat="{{user in data}}">
+                <div class="card">
+                  <div class="card-container" horizontal?="{{!mobile}}" vertical?="{{mobile}}" layout>
+                    <div class="section" flex?="{{!mobile}}" horizontal layout>
+                      <core-image src="{{user.avatar}}" width="56" height="56" class="avatar"
+                                  sizing="cover"></core-image>
+                      <div class="status">
+                        <core-icon icon="image:remove-red-eye"></core-icon>
+                      </div>
+                      <div class="info">
+                        <div class="name">{{user.name}}</div>
+                        <rating-bar rating="{{user.rating}}"></rating-bar>
+                      </div>
+                    </div>
+                    <div class="section" flex?="{{!mobile}}" two vertical layout>
+                      <div horizontal layout class="prof">
+                        <div flex>Translate</div>
+                        <div flex class="price">
+                          <div class="count">{{user.price}}</div>
+                          <div>per<br>word</div>
+                        </div>
+                        <div flex>{{user.email}}</div>
+                      </div>
+
+                      <div horizontal layout class="language">
+                        <div>{{user.languages.from}}</div>
+                        <template repeat="{{lang in user.languages.to}}">
+                          <div>{{lang}}</div>
+                        </template>
+                      </div>
+                    </div>
+
+                    <div class="section" flex?="{{!mobile}}" horizontal layout>
+
+                    </div>
+                  </div>
+                </div>
+              </template>
+
+            </div>
+            <div vertical layout center hidden?={{!updating}}>
+              <paper-spinner active></paper-spinner>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+  <script src="search-app.js">
+  </script>
+</polymer-element>

@@ -1,0 +1,214 @@
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE
+The complete set of authors may be found at http://polymer.github.io/AUTHORS
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS
+-->
+
+<!--
+
+@group Paper Elements
+@element paper-tag-input
+@homepage github.io
+-->
+<link href="../polymer/polymer.html" rel="import">
+<link href="../core-input/core-input.html" rel="import">
+
+<polymer-element name="paper-tag-input" attributes="delimiter">
+
+  <template>
+
+    <style>
+      :host {
+        display: inline-block;
+        padding: 0.55em 0;
+      }
+
+      #container {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+      }
+
+      #tags {
+        width: 0px;
+        height: 100%;
+      }
+
+      #tags .tag {
+        float: left;
+        margin: 0.25em 8px 0em 0px;
+        background-color: #ecf0f1;
+        padding: 0.25em 8px;
+        border-radius: 2px;
+      }
+
+      #tags .tag a {
+        margin-left: 4px;
+        cursor: pointer;
+      }
+
+      #container input {
+        margin: 0.5em 0 0.25em;
+      }
+
+    </style>
+
+    <div id="container">
+      <div id="tags" data-left="0"></div>
+      <input id="input" is="core-input" value="{{value}}" committedValue="{{committedValue}}"
+             on-change="{{changeAction}}"
+             disabled?="{{disabled}}">
+    </div>
+
+  </template>
+
+  <script>
+
+    Polymer('paper-tag-input', {
+
+      publish: {
+        /**
+         * Character separating tags
+         *
+         * @attribute delimiter
+         * @type string
+         * @default ''
+         */
+        delimiter: ',',
+
+        /**
+         * The label for this input. It normally appears as grey text inside
+         * the text input and disappears once the user enters text.
+         *
+         * @attribute label
+         * @type string
+         * @default ''
+         */
+        label: '',
+
+        /**
+         * If true, the label will "float" above the text input once the
+         * user enters text instead of disappearing.
+         *
+         * @attribute floatingLabel
+         * @type boolean
+         * @default false
+         */
+        floatingLabel: false,
+
+        /**
+         * Set to true to style the element as disabled.
+         *
+         * @attribute disabled
+         * @type boolean
+         * @default false
+         */
+        disabled: {value: false, reflect: true},
+
+        /**
+         * The current value of the input.
+         *
+         * @attribute value
+         * @type String
+         * @default ''
+         */
+        value: '',
+
+        /**
+         * All typed tags.
+         *
+         * @attribute value
+         * @type Array
+         * @default []
+         */
+        tags: [],
+
+        /**
+         * All tags representeds as string.
+         *
+         * @attribute value
+         * @type String
+         * @default ''
+         */
+        tagString: '',
+
+        /**
+         * The most recently committed value of the input.
+         *
+         * @attribute committedValue
+         * @type String
+         * @default ''
+         */
+        committedValue: ''
+
+      },
+
+      ready: function () {
+        var app = this;
+        this.$.input.onkeypress = function (e) {
+          // adding tag
+          if (e.charCode == app.delimiter.charCodeAt(0)) {
+            if (app.value != '') {
+              var tag = document.createElement('div');
+              tag.classList.add('tag');
+              tag.setAttribute('horisontal', '');
+              tag.setAttribute('layout', '');
+
+              tag.appendChild((function (value) {
+                var e = document.createElement('span');
+                e.innerText = value;
+                return e;
+              }(app.value)));
+
+              tag.appendChild((function () {
+                var e = document.createElement('a');
+                e.onclick = function (e) {
+                  // deleting tag
+                  var t = e.path[1];
+                  app.$.tags.style['width'] = app.$.tags.offsetWidth - (t.offsetWidth + 10) + 'px';
+                  app.$.tags.dataset['left'] = Math.min(0, parseInt(app.$.tags.dataset['left']) + 8 + t.offsetWidth);
+                  app.$.tags.style['margin-left'] = app.$.tags.dataset['left'] + 'px';
+                  t.remove();
+
+                  app.updateTags();
+                };
+                e.innerHTML = '&times;';
+                return e;
+              }()));
+
+              app.$.tags.appendChild(tag);
+
+              app.$.tags.style['width'] = app.$.tags.offsetWidth + tag.offsetWidth + 10 + 'px';
+
+              if (app.$.tags.offsetWidth > app.$.container.offsetWidth / 2) {
+                app.$.tags.dataset['left'] = app.$.tags.dataset['left'] - (tag.offsetWidth + 8);
+                app.$.tags.style['margin-left'] = app.$.tags.dataset['left'] + 'px';
+              }
+
+              app.updateTags();
+
+              app.value = '';
+            }
+            return false;
+          }
+        };
+      },
+
+      changeAction: function (e) {
+      },
+
+      updateTags: function () {
+        var tags = this.$.tags.childNodes;
+        this.tags = [];
+        for (var i = 0; i < tags.length; i++) {
+          this.tags.push(tags[i].childNodes[0].innerText);
+        }
+        this.tagString = this.tags.join(this.delimiter);
+      }
+    });
+  </script>
+
+</polymer-element>

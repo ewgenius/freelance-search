@@ -1,0 +1,23 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../bower_components/core-icons/core-icons.html">
+<link rel="import" href="../../bower_components/core-icon/core-icon.html">
+
+<polymer-element name="rating-bar" attributes="rating" horizontal layout>
+
+  <template>
+    <style>
+      core-icon {
+        color: inherit;
+      }
+    </style>
+    <template repeat="{{star in stars}}">
+      <core-icon icon="{{ star < rating ? 'star' : 'star-outline' }}"></core-icon>
+    </template>
+  </template>
+  <script>
+    Polymer({
+      stars: [1, 2, 3, 4, 5]
+    })
+  </script>
+</polymer-element>

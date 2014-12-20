@@ -1,0 +1,22 @@
+{
+  "name": "freelance-search",
+  "version": "0.0.0",
+  "authors": [
+    "ewgenius <ewgeniux@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "~0.5.2",
+    "core-elements": "polymer/core-elements#~0.5.2",
+    "paper-elements": "polymer/paper-elements#~0.5.2",
+    "paper-datepicker": "*"
+  }
+}

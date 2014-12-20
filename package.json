@@ -1,0 +1,22 @@
+{
+  "name": "freelance-search",
+  "version": "0.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "grunt": "~0.4.5",
+    "grunt-vulcanize": "~0.6.1",
+    "grunt-serve": "~0.1.6",
+    "express": "~4.10.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@bitbucket.org:ewgenius/freelance-search.git"
+  },
+  "author": "",
+  "license": "BSD-2-Clause"
+}
