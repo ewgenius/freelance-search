@@ -2,9 +2,9 @@ Polymer('search-app', {
 
   mobile: false,
 
-  minPrice: 0.01,
+  minPrice: 0.1,
 
-  maxPrice: 0.22,
+  maxPrice: 0.2,
 
   privateProfiles: false,
 
