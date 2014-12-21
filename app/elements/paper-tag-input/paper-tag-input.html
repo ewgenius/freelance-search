@@ -13,8 +13,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 @element paper-tag-input
 @homepage github.io
 -->
-<link href="../polymer/polymer.html" rel="import">
-<link href="../core-input/core-input.html" rel="import">
+<link href="../../bower_components/polymer/polymer.html" rel="import">
+<link href="../../bower_components/core-input/core-input.html" rel="import">
 
 <polymer-element name="paper-tag-input" attributes="delimiter">
 
@@ -191,7 +191,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
               app.$.tags.appendChild(tag);
 
-              console.log(tag.offsetWidth);
+              //console.log(tag.offsetWidth);
 
               app.$.tags.style['width'] = app.$.tags.offsetWidth + tag.offsetWidth + 10 + 'px';
 

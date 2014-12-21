@@ -52,7 +52,7 @@ Polymer('search-app', {
             from: 'Russian',
             to: ['English', 'French', 'Deutch']
           },
-          rating: 4,
+          rating: Math.floor(Math.random() * 5),
           vissible: false
         });
       }
