@@ -46,6 +46,10 @@
   }
 }
 
+.advanced {
+  cursor: pointer;
+}
+
 .slider-box {
   padding-top: 0px;
   .label {
@@ -93,6 +97,15 @@ paper-checkbox.gray::shadow {
 
 paper-button {
   text-transform: none;
+}
+
+paper-dropdown-menu {
+  border-color: #9faaae;
+  &::shadow {
+    #label, #arrow {
+      color: #9faaae;
+    }
+  }
 }
 
 paper-interval-slider::shadow {
@@ -212,9 +225,15 @@ paper-interval-slider::shadow {
     height: 24px;
     border-radius: 100%;
     color: #fff;
-    background: @active;
+
     margin: -6px 0 0 -18px;
     z-index: 1;
+    &.eye {
+      background: @active;
+    }
+    &.eye-off {
+      background: #ffc502;
+    }
     core-icon {
       width: 15px;
       height: 15px;
@@ -229,9 +248,15 @@ paper-interval-slider::shadow {
     font-size: 14px;
     text-align: right;
 
-    &.ready {  color: #30d5ad;  }
-    &.busy {  color: #fe5b5e;  }
-    &.not_locking {  color: #ffc502;  }
+    &.ready {
+      color: #30d5ad;
+    }
+    &.busy {
+      color: #fe5b5e;
+    }
+    &.not_locking {
+      color: #ffc502;
+    }
 
     core-icon {
       width: 16px;

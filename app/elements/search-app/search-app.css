@@ -29,6 +29,9 @@
 .mobile .column {
   width: 100%;
 }
+.advanced {
+  cursor: pointer;
+}
 .slider-box {
   padding-top: 0px;
 }
@@ -63,6 +66,13 @@ paper-checkbox.gray::shadow #ink {
 }
 paper-button {
   text-transform: none;
+}
+paper-dropdown-menu {
+  border-color: #9faaae;
+}
+paper-dropdown-menu::shadow #label,
+paper-dropdown-menu::shadow #arrow {
+  color: #9faaae;
 }
 paper-interval-slider::shadow #sliderBar::shadow #progress {
   background-color: #4fc2f8;
@@ -160,9 +170,14 @@ paper-interval-slider::shadow #knobInner::before {
   height: 24px;
   border-radius: 100%;
   color: #fff;
-  background: #30d5ad;
   margin: -6px 0 0 -18px;
   z-index: 1;
+}
+.card .status.eye {
+  background: #30d5ad;
+}
+.card .status.eye-off {
+  background: #ffc502;
 }
 .card .status core-icon {
   width: 15px;

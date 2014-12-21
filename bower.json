@@ -17,6 +17,7 @@
     "polymer": "~0.5.2",
     "core-elements": "polymer/core-elements#~0.5.2",
     "paper-elements": "polymer/paper-elements#~0.5.2",
-    "paper-datepicker": "*"
+    "paper-datepicker": "*",
+    "mdi": "~0.5.19-alpha"
   }
 }

@@ -48,7 +48,15 @@ Polymer('search-app', {
       for (var i = 0; i < 12; i++) {
         app.data.push({
           name: 'Marco Test',
-          avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg',
+          eye: Math.random() >= 0.5,
+          avatar: [
+            'https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg',
+            'https://s3.amazonaws.com/uifaces/faces/twitter/_everaldo/128.jpg',
+            'https://s3.amazonaws.com/uifaces/faces/twitter/whale/128.jpg',
+            'https://s3.amazonaws.com/uifaces/faces/twitter/iconfinder/128.jpg',
+            'https://s3.amazonaws.com/uifaces/faces/twitter/ateneupopular/128.jpg',
+            'https://s3.amazonaws.com/uifaces/faces/twitter/sillyleo/128.jpg'
+          ][Math.floor(Math.random() * 6)],
           price: '0.03',
           email: 'test@test.com',
           status: ['ready', 'busy', 'not_locking'][Math.floor(Math.random() * 3)],
