@@ -50,13 +50,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         cursor: pointer;
       }
 
+      #container {
+        cursor: text;
+      }
+
       #container input {
         margin: 0.5em 0 0.25em;
+        width: 40px;
       }
 
     </style>
 
-    <div id="container">
+    <div id="container" on-click="{{clickContainer}}">
       <div id="tags" data-left="0"></div>
       <input id="input" is="core-input" value="{{value}}" committedValue="{{committedValue}}"
              on-change="{{changeAction}}"
@@ -183,8 +188,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
               app.$.tags.style['width'] = app.$.tags.offsetWidth + tag.offsetWidth + 10 + 'px';
 
-              if (app.$.tags.offsetWidth > app.$.container.offsetWidth / 2) {
-                app.$.tags.dataset['left'] = app.$.tags.dataset['left'] - (tag.offsetWidth + 8);
+              if (app.$.tags.offsetWidth > app.$.container.offsetWidth - 60) {
+                app.$.tags.dataset['left'] = app.$.tags.dataset['left'] - (tag.offsetWidth + 8) + (app.tags.length == 0 ? 40 : 0);
                 app.$.tags.style['margin-left'] = app.$.tags.dataset['left'] + 'px';
               }
 
@@ -198,6 +203,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       changeAction: function (e) {
+      },
+
+      clickContainer: function (e) {
+        this.$.input.focus();
       },
 
       updateTags: function () {
