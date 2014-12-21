@@ -43,6 +43,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         background-color: #ecf0f1;
         padding: 0.25em 8px;
         border-radius: 2px;
+        white-space: nowrap;
+      }
+
+      #tags .tag span {
+        white-space: nowrap;
       }
 
       #tags .tag a {
@@ -185,6 +190,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               }()));
 
               app.$.tags.appendChild(tag);
+
+              console.log(tag.offsetWidth);
 
               app.$.tags.style['width'] = app.$.tags.offsetWidth + tag.offsetWidth + 10 + 'px';
 
