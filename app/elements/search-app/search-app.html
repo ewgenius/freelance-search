@@ -7,6 +7,7 @@
 <link rel="import" href="../../bower_components/core-icons/core-icons.html">
 <link rel="import" href="../../bower_components/core-icons/image-icons.html">
 <link rel="import" href="../../bower_components/core-icons/device-icons.html">
+<link rel="import" href="../../bower_components/core-collapse/core-collapse.html">
 <link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
 <link rel="import" href="../../bower_components/paper-dropdown/paper-dropdown.html">
 <link rel="import" href="../../bower_components/paper-item/paper-item.html">
@@ -83,45 +84,52 @@
               </div>
             </div>
 
-            <div class="row" horizontal?="{{!(mobile || dataLoaded)}}" vertical?="{{(mobile || dataLoaded)}}" layout
-                 justified>
-
-              <div class="column" vertical layout>
-                <paper-dropdown-menu label="Source Language">
-                  <paper-dropdown class="dropdown">
-                    <core-menu class="menu">
-                      <paper-item>Croissant</paper-item>
-                      <paper-item>Donut</paper-item>
-                      <paper-item>Financier</paper-item>
-                      <paper-item>Madeleine</paper-item>
-                    </core-menu>
-                  </paper-dropdown>
-                </paper-dropdown-menu>
-              </div>
-
-              <div class="column" vertical layout>
-                <core-label class="slider-box" vertical layout>
-                  <div class="title gray">Price c/word</div>
-                  <div horizontal layout>
-                    <div class="label" flex>{{minImmediate}}</div>
-                    <paper-interval-slider flex six min="0.01" max="1" minInterval="0.01" valueA="{{minPrice}}"
-                                           valueB="{{maxPrice}}" immediateValueA="{{minImmediate}}"
-                                           immediateValueB="{{maxImmediate}}" step="0.01"></paper-interval-slider>
-                    <div class="label" flex>{{maxImmediate}}</div>
-                  </div>
-                </core-label>
-              </div>
-
-              <div class="column" vertical layout>
-                <br>
-                <core-label class="{{ privateProfiles ? 'active' : 'gray' }}">
-                  <paper-checkbox class="{{ privateProfiles ? 'active' : 'gray' }}"
-                                  checked="{{privateProfiles}}"></paper-checkbox>
-                  <span>Private profile only</span>
-                </core-label>
-              </div>
+            <div class="row">
+              <a on-click="{{toggleAdvanced}}">Advanced search</a>
             </div>
 
+            <core-collapse id="advanced">
+
+              <div class="row" horizontal?="{{!(mobile || dataLoaded)}}" vertical?="{{(mobile || dataLoaded)}}" layout
+                   justified>
+
+                <div class="column" vertical layout>
+                  <paper-dropdown-menu label="Source Language">
+                    <paper-dropdown class="dropdown">
+                      <core-menu class="menu">
+                        <paper-item>Croissant</paper-item>
+                        <paper-item>Donut</paper-item>
+                        <paper-item>Financier</paper-item>
+                        <paper-item>Madeleine</paper-item>
+                      </core-menu>
+                    </paper-dropdown>
+                  </paper-dropdown-menu>
+                </div>
+
+                <div class="column" vertical layout>
+                  <core-label class="slider-box" vertical layout>
+                    <div class="title gray">Price c/word</div>
+                    <div horizontal layout>
+                      <div class="label" flex>{{minImmediate}}</div>
+                      <paper-interval-slider flex six min="0.01" max="1" minInterval="0.01" valueA="{{minPrice}}"
+                                             valueB="{{maxPrice}}" immediateValueA="{{minImmediate}}"
+                                             immediateValueB="{{maxImmediate}}" step="0.01"></paper-interval-slider>
+                      <div class="label" flex>{{maxImmediate}}</div>
+                    </div>
+                  </core-label>
+                </div>
+
+                <div class="column" vertical layout>
+                  <br>
+                  <core-label class="{{ privateProfiles ? 'active' : 'gray' }}">
+                    <paper-checkbox class="{{ privateProfiles ? 'active' : 'gray' }}"
+                                    checked="{{privateProfiles}}"></paper-checkbox>
+                    <span>Private profile only</span>
+                  </core-label>
+                </div>
+              </div>
+
+            </core-collapse>
           </div>
 
           <!-- results -->
@@ -177,7 +185,7 @@
                     <div class="section" flex?="{{!mobile}}" horizontal layout start>
                       <div flex class="work-status {{user.status}}">
                         <core-icon icon="device:access-time"></core-icon>
-                        {{user.status}}
+                        {{user.status == 'ready' ? 'Ready to work' : (user.status == 'busy' ? 'I\'m busy' : 'Not locking for work')}}
                       </div>
                       <paper-button class="add">Add</paper-button>
                     </div>

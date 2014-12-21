@@ -32,9 +32,16 @@ Polymer('search-app', {
 
   },
 
+  toggleAdvanced: function () {
+    this.$.advanced.toggle();
+  },
+
   search: function () {
     this.updating = true;
     var app = this;
+
+    // dummy data
+
     setTimeout(function () {
       app.dataLoaded = true;
 
@@ -44,7 +51,7 @@ Polymer('search-app', {
           avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg',
           price: '0.03',
           email: 'test@test.com',
-          status: 'ready',
+          status: ['ready', 'busy', 'not_locking'][Math.floor(Math.random() * 3)],
           languages: {
             from: 'Russian',
             to: ['English', 'French', 'Deutch']

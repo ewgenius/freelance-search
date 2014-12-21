@@ -170,9 +170,20 @@ paper-interval-slider::shadow #knobInner::before {
   margin-left: 4.5px;
 }
 .card .work-status {
-  padding: 4px 16px 0 0;
+  margin-top: -4px;
+  margin-left: -40px;
+  padding: 0px 16px 0 0;
   font-size: 14px;
   text-align: right;
+}
+.card .work-status.ready {
+  color: #30d5ad;
+}
+.card .work-status.busy {
+  color: #fe5b5e;
+}
+.card .work-status.not_locking {
+  color: #ffc502;
 }
 .card .work-status core-icon {
   width: 16px;
@@ -181,6 +192,7 @@ paper-interval-slider::shadow #knobInner::before {
 .card paper-button.add {
   background: #4fc2f8;
   color: #fff;
+  margin-top: -8px;
   height: 27px;
   width: 63px;
   min-width: 63px;

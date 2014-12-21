@@ -223,9 +223,15 @@ paper-interval-slider::shadow {
   }
 
   .work-status {
-    padding: 4px 16px 0 0;
+    margin-top: -4px;
+    margin-left: -40px;
+    padding: 0px 16px 0 0;
     font-size: 14px;
     text-align: right;
+
+    &.ready {  color: #30d5ad;  }
+    &.busy {  color: #fe5b5e;  }
+    &.not_locking {  color: #ffc502;  }
 
     core-icon {
       width: 16px;
@@ -236,6 +242,7 @@ paper-interval-slider::shadow {
   paper-button.add {
     background: @accent;
     color: #fff;
+    margin-top: -8px;
     height: 27px;
     width: 63px;
     min-width: 63px;
