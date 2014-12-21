@@ -91,6 +91,10 @@ paper-checkbox.gray::shadow {
   }
 }
 
+paper-button {
+  text-transform: none;
+}
+
 paper-interval-slider::shadow {
   #sliderBar::shadow #progress {
     background-color: @accent;
@@ -133,9 +137,6 @@ paper-interval-slider::shadow {
       background: @active;
     }
     &::shadow {
-      #ripple {
-        color: @active;
-      }
       .button-content {
         height: 56px;
         padding: 0px;
@@ -173,17 +174,26 @@ paper-interval-slider::shadow {
       }
     }
   }
+
   .prof {
+    color: #b6bbbe;
+    margin: -4px 0px 8px 4px;
+    font-size: 14px;
     div {
       float: left;
     }
     .price {
+      margin-top: -4px;
       font-size: 10px;
+      color: #000;
       .count {
-
+        font-size: 20px;
+        color: @active;
+        margin-right: 4px;
       }
     }
   }
+
   .language {
     font-size: 14px;
     div {
@@ -191,6 +201,9 @@ paper-interval-slider::shadow {
       padding: 5px 11px;
       margin: 0px 2px;
       border: 1px solid #dee3e6;
+      &.arrow {
+        border: none;
+      }
     }
   }
 
@@ -206,6 +219,35 @@ paper-interval-slider::shadow {
       width: 15px;
       height: 15px;
       margin-left: 4.5px;
+    }
+  }
+
+  .work-status {
+    padding: 4px 16px 0 0;
+    font-size: 14px;
+    text-align: right;
+
+    core-icon {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  paper-button.add {
+    background: @accent;
+    color: #fff;
+    height: 27px;
+    width: 63px;
+    min-width: 63px;
+    font-size: 14px;
+    &:hover {
+      background: @active;
+    }
+    &::shadow {
+      .button-content {
+        height: 27px;
+        padding: 0px;
+      }
     }
   }
 }

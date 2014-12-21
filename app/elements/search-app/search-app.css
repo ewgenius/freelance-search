@@ -61,6 +61,9 @@ paper-checkbox.gray::shadow #checkbox {
 paper-checkbox.gray::shadow #ink {
   color: #9faaae;
 }
+paper-button {
+  text-transform: none;
+}
 paper-interval-slider::shadow #sliderBar::shadow #progress {
   background-color: #4fc2f8;
 }
@@ -94,9 +97,6 @@ paper-interval-slider::shadow #knobInner::before {
 .search paper-button:hover {
   background: #30d5ad;
 }
-.search paper-button::shadow #ripple {
-  color: #30d5ad;
-}
 .search paper-button::shadow .button-content {
   height: 56px;
   padding: 0px;
@@ -125,11 +125,23 @@ paper-interval-slider::shadow #knobInner::before {
 .card .info rating-bar::shadow core-icon {
   color: #ecf0f1;
 }
+.card .prof {
+  color: #b6bbbe;
+  margin: -4px 0px 8px 4px;
+  font-size: 14px;
+}
 .card .prof div {
   float: left;
 }
 .card .prof .price {
+  margin-top: -4px;
   font-size: 10px;
+  color: #000;
+}
+.card .prof .price .count {
+  font-size: 20px;
+  color: #30d5ad;
+  margin-right: 4px;
 }
 .card .language {
   font-size: 14px;
@@ -139,6 +151,9 @@ paper-interval-slider::shadow #knobInner::before {
   padding: 5px 11px;
   margin: 0px 2px;
   border: 1px solid #dee3e6;
+}
+.card .language div.arrow {
+  border: none;
 }
 .card .status {
   width: 24px;
@@ -153,4 +168,28 @@ paper-interval-slider::shadow #knobInner::before {
   width: 15px;
   height: 15px;
   margin-left: 4.5px;
+}
+.card .work-status {
+  padding: 4px 16px 0 0;
+  font-size: 14px;
+  text-align: right;
+}
+.card .work-status core-icon {
+  width: 16px;
+  height: 16px;
+}
+.card paper-button.add {
+  background: #4fc2f8;
+  color: #fff;
+  height: 27px;
+  width: 63px;
+  min-width: 63px;
+  font-size: 14px;
+}
+.card paper-button.add:hover {
+  background: #30d5ad;
+}
+.card paper-button.add::shadow .button-content {
+  height: 27px;
+  padding: 0px;
 }
