@@ -14,19 +14,7 @@ Polymer('search-app', {
 
   dataLoaded: false,
 
-  data: [{
-    name: 'Marco Test',
-    avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg',
-    price: '0.03',
-    email: 'test@test.com',
-    status: 'ready',
-    languages: {
-      from: 'Russian',
-      to: ['English', 'French', 'Deutch']
-    },
-    rating: 4,
-    vissible: false
-  }],
+  data: [],
 
   ready: function () {
 
@@ -45,7 +33,7 @@ Polymer('search-app', {
     setTimeout(function () {
       app.dataLoaded = true;
 
-      for (var i = 0; i < 12; i++) {
+      for (var i = 0; i < 5; i++) {
         app.data.push({
           name: 'Marco Test',
           eye: Math.random() >= 0.5,
