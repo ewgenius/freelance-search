@@ -39,6 +39,13 @@
   padding: 4px;
   text-align: center;
 }
+paper-dropdown-menu core-dropdown {
+  width: 100% !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+}
+core-item {
+  cursor: pointer !important;
+}
 paper-checkbox {
   margin-right: 8px;
   margin-bottom: -4px;
