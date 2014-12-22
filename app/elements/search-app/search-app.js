@@ -2,6 +2,9 @@ Polymer('search-app', {
 
   mobile: false,
 
+  data: [],
+
+  // search variables
   minPrice: 0.1,
 
   maxPrice: 0.2,
@@ -10,11 +13,10 @@ Polymer('search-app', {
 
   nativeLanguage: true,
 
+  // process
   updating: false,
 
   dataLoaded: false,
-
-  data: [],
 
   ready: function () {
 

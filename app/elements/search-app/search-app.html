@@ -38,8 +38,10 @@
           <h1>Freelance Search</h1>
         </div>
         <div class="panel" vertical?="{{!(dataLoaded && !mobile)}}" horizontal?="{{dataLoaded && !mobile}}" layout>
-          <!-- filters -->
+
+          <!-- filters section -->
           <div flex?="{{dataLoaded && !mobile}}" class="filters">
+
             <div class="row" horizontal?="{{!(mobile || dataLoaded)}}" vertical?="{{(mobile || dataLoaded)}}" layout
                  justified>
               <div class="column" vertical layout>
@@ -137,7 +139,7 @@
             </core-collapse>
           </div>
 
-          <!-- results -->
+          <!-- results section -->
           <div flex?="{{dataLoaded && !mobile}}" three class="dataLoaded">
             <div class="row" horizontal layout>
               <div class="search" flex horizontal layout>
@@ -153,6 +155,8 @@
               <h3>Search results</h3>
 
               <template repeat="{{user in data}}">
+
+                <!-- user card -->
                 <div class="card">
                   <div class="card-container" horizontal?="{{!mobile}}" vertical?="{{mobile}}" layout>
                     <div class="section" flex?="{{!mobile}}" horizontal layout>
@@ -197,8 +201,9 @@
                   </div>
                 </div>
               </template>
-
             </div>
+
+            <!-- spinner -->
             <div vertical layout center hidden?={{!updating}}>
               <paper-spinner active></paper-spinner>
             </div>
