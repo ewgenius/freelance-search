@@ -36,7 +36,7 @@
 #container .bootstrap-tagsinput input {
   display: block;
   float: left;
-  min-width: 50px;
+  min-width: 0px;
   margin: 0.4em;
   font-size: 16px;
 }
