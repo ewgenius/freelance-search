@@ -29,7 +29,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </template>
 
   <script src="jquery.js"></script>
-  <script src="../../bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+  <script src="bootstrap-tagsinput.js"></script>
 
   <script>
     String.prototype.width = function (font) {
@@ -76,7 +76,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         var container = this.tagsInput.$input.parent()[0];
         var width = 100;
         for (var i = 0; i < this.tagsInput.itemsArray.length; i++) {
-          var w = this.tagsInput.itemsArray[i].width('Roboto') + 60;
+          var w = this.tagsInput.itemsArray[i].width('Roboto') + 200;
           width += w;
         }
         $(container).css({'width': width + 'px'});
