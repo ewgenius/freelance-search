@@ -13,38 +13,268 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 @element paper-tag-input
 @homepage github.io
 -->
-<link href="../../bower_components/polymer/polymer.html" rel="import">
-<link href="../../bower_components/core-input/core-input.html" rel="import">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/core-input/core-input.html">
+<link rel="import" href="../../bower_components/core-icon/core-icon.html">
+<link rel="import" href="../../bower_components/core-icons/core-icons.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 
 <polymer-element name="paper-tag-input" attributes="delimiter">
 
   <template>
-    <link rel="stylesheet" href="bootstrap-tagsinput.css">
-    <link rel="stylesheet" href="paper-tag-input.css">
 
-    <div id="container">
-      <input id="input" is="core-input" data-role="tagsinput">
+    <style>
+      :host {
+        display: inline-block;
+        padding: 0.55em 0;
+      }
+
+      #container {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+      }
+
+      #tags {
+        width: 0px;
+        height: 100%;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -o-user-select: none;
+        user-select: none;
+      }
+
+      paper-icon-button {
+
+      }
+
+      #tags .tag {
+        float: left;
+        margin: 0.25em 8px 0em 0px;
+        background-color: #ecf0f1;
+        padding: 0.25em 8px;
+        border-radius: 2px;
+        white-space: nowrap;
+
+      }
+
+      #tags .tag span {
+        white-space: nowrap;
+      }
+
+      #tags .tag a {
+        margin-left: 4px;
+        cursor: pointer;
+      }
+
+      #tags .tag.selected {
+        background-color: #f00;
+      }
+
+      #container {
+        cursor: text;
+      }
+
+      #container input {
+        position: absolute;
+
+        margin: 0.5em -100% 0.25em 0;
+        width: 100%;
+      }
+
+    </style>
+    <div horizontal layout>
+      <paper-icon-button icon="chevron-left" hidden?="{{!overWidth}}" on-click="{{left}}"></paper-icon-button>
+      <div id="container" on-click="{{clickContainer}}">
+
+        <div id="tags" data-left="0"></div>
+
+        <input id="input" is="core-input" value="{{value}}" committedValue="{{committedValue}}"
+               on-change="{{changeAction}}"
+               disabled?="{{disabled}}">
+      </div>
+      <paper-icon-button icon="chevron-right" hidden?="{{!overWidth}}" on-click="{{right}}"></paper-icon-button>
     </div>
-
   </template>
 
-  <script src="jquery.js"></script>
-  <script src="../../bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
-
   <script>
-    Polymer({
+
+    Polymer('paper-tag-input', {
+
+      publish: {
+        /**
+         * Character separating tags
+         *
+         * @attribute delimiter
+         * @type string
+         * @default ''
+         */
+        delimiter: ',',
+
+        /**
+         * The label for this input. It normally appears as grey text inside
+         * the text input and disappears once the user enters text.
+         *
+         * @attribute label
+         * @type string
+         * @default ''
+         */
+        label: '',
+
+        /**
+         * If true, the label will "float" above the text input once the
+         * user enters text instead of disappearing.
+         *
+         * @attribute floatingLabel
+         * @type boolean
+         * @default false
+         */
+        floatingLabel: false,
+
+        /**
+         * Set to true to style the element as disabled.
+         *
+         * @attribute disabled
+         * @type boolean
+         * @default false
+         */
+        disabled: {value: false, reflect: true},
+
+        /**
+         * The current value of the input.
+         *
+         * @attribute value
+         * @type String
+         * @default ''
+         */
+        value: '',
+
+        /**
+         * All typed tags.
+         *
+         * @attribute value
+         * @type Array
+         * @default []
+         */
+        tags: [],
+
+        /**
+         * All tags representeds as string.
+         *
+         * @attribute value
+         * @type String
+         * @default ''
+         */
+        tagString: '',
+
+        /**
+         * The most recently committed value of the input.
+         *
+         * @attribute committedValue
+         * @type String
+         * @default ''
+         */
+        committedValue: ''
+      },
+
+      overWidth: false,
+
       ready: function () {
-        $(this.$.input).tagsinput();
-        $(this.$.input).on('beforeItemAdd', function(event) {
-          console.log(event);
-        });
-        $(this.$.input).on('itemAdded', function(event) {
-          console.log(event);
-        });
+        var app = this;
+        this.$.input.onkeypress = function (e) {
+          // adding tag
+          if (e.charCode == app.delimiter.charCodeAt(0)) {
+            if (app.value != '') {
+              var tag = document.createElement('div');
+              tag.classList.add('tag');
+              tag.setAttribute('horisontal', '');
+              tag.setAttribute('layout', '');
+
+              tag.addEventListener('click', function (e) {
+                //tag.classList.add('selected');
+              });
+
+              tag.appendChild((function (value) {
+                var e = document.createElement('span');
+                e.innerText = value;
+                return e;
+              }(app.value)));
+
+              tag.appendChild((function () {
+                var e = document.createElement('a');
+                e.onclick = function (e) {
+                  // deleting tag
+                  var t = e.path[1];
+                  app.$.tags.style['width'] = app.$.tags.offsetWidth - (t.offsetWidth + 10) + 'px';
+                  app.$.tags.dataset['left'] = Math.min(0, parseInt(app.$.tags.dataset['left']) + 8 + t.offsetWidth);
+                  app.$.tags.style['margin-left'] = app.$.tags.dataset['left'] + 'px';
+                  t.remove();
+
+                  app.updateTags();
+
+                  if (app.$.tags.offsetWidth <= app.$.container.offsetWidth - 80)
+                    app.overWidth = false;
+
+                };
+                e.innerHTML = '&times;';
+                return e;
+              }()));
+
+              app.$.tags.appendChild(tag);
+
+              //console.log(tag.offsetWidth);
+
+              app.$.tags.style['width'] = app.$.tags.offsetWidth + tag.offsetWidth + 10 + 'px';
+
+              if (app.$.tags.offsetWidth > app.$.container.offsetWidth - 60) {
+                app.overWidth = true;
+                app.$.tags.dataset['left'] = app.$.tags.dataset['left'] - (tag.offsetWidth + 8) + (app.tags.length == 0 ? 40 : 0);
+                app.$.tags.style['margin-left'] = app.$.tags.dataset['left'] + 'px';
+              }
+
+              app.updateTags();
+
+              app.value = '';
+            }
+            return false;
+          }
+        };
+      },
+
+      changeAction: function (e) {
+      },
+
+      offset: 0,
+
+      left: function (e) {
+        var app = this;
+        app.offset += 20;
+        app.$.tags.style['margin-left'] = parseInt(app.$.tags.dataset['left']) + app.offset + 'px';
+      },
+
+      right: function (e) {
+        var app = this;
+        app.offset -= 20;
+        app.$.tags.style['margin-left'] = parseInt(app.$.tags.dataset['left']) + app.offset + 'px';
+      },
+
+      clickContainer: function (e) {
+        this.$.input.focus();
+        app.offset -= 20;
+        app.$.tags.style['margin-left'] = parseInt(app.$.tags.dataset['left']) + app.offset + 'px';
+
+      },
+
+      updateTags: function () {
+        var tags = this.$.tags.childNodes;
+        this.tags = [];
+        for (var i = 0; i < tags.length; i++) {
+          this.tags.push(tags[i].childNodes[0].innerText);
+        }
+        this.tagString = this.tags.join(this.delimiter);
       }
     });
   </script>
-
-  <!--script src="paper-tag-input.js"></script-->
 
 </polymer-element>
