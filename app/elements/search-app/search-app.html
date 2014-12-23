@@ -92,7 +92,8 @@
             <div class="row">
               <a on-click="{{toggleAdvanced}}" class="advanced">
                 Advanced search
-                <core-icon icon="{{ opened ? 'hardware:keyboard-arrow-up' : 'hardware:keyboard-arrow-down' }}"></core-icon>
+                <core-icon
+                  icon="{{ opened ? 'hardware:keyboard-arrow-up' : 'hardware:keyboard-arrow-down' }}"></core-icon>
               </a>
             </div>
 
@@ -195,7 +196,8 @@
                     <div class="section" flex?="{{!mobile}}" horizontal layout start>
                       <div flex class="work-status {{user.status}}">
                         <core-icon icon="device:access-time"></core-icon>
-                        {{user.status == 'ready' ? 'Ready to work' : (user.status == 'busy' ? 'I\'m busy' : 'Not looking for work')}}
+                        {{user.status == 'ready' ? 'Ready to work' : (user.status == 'busy' ? 'I\'m busy' : 'Not looking
+                        for work')}}
                       </div>
                       <paper-button class="add">Add</paper-button>
                     </div>

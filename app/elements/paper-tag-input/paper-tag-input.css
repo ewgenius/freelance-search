@@ -17,6 +17,8 @@
   border: none;
   box-shadow: none;
   white-space: nowrap;
+  max-width: none;
+  overflow-y: auto;
 }
 #container .bootstrap-tagsinput .tag {
   background-color: #ecf0f1;
@@ -26,6 +28,9 @@
   color: #000;
   display: block;
   float: left;
+}
+#container .bootstrap-tagsinput .tag span::after {
+  content: '×';
 }
 #container .bootstrap-tagsinput input {
   display: block;
