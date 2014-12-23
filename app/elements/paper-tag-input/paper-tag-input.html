@@ -19,62 +19,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <polymer-element name="paper-tag-input" attributes="delimiter">
 
   <template>
+    <link rel="stylesheet" href="bootstrap-tagsinput.css">
+    <link rel="stylesheet" href="paper-tag-input.css">
 
-    <style>
-      :host {
-        display: inline-block;
-        padding: 0.55em 0;
-      }
-
-      #container {
-        height: 100%;
-        width: 100%;
-        overflow: hidden;
-      }
-
-      #tags {
-        width: 0px;
-        height: 100%;
-      }
-
-      #tags .tag {
-        float: left;
-        margin: 0.25em 8px 0em 0px;
-        background-color: #ecf0f1;
-        padding: 0.25em 8px;
-        border-radius: 2px;
-        white-space: nowrap;
-      }
-
-      #tags .tag span {
-        white-space: nowrap;
-      }
-
-      #tags .tag a {
-        margin-left: 4px;
-        cursor: pointer;
-      }
-
-      #container {
-        cursor: text;
-      }
-
-      #container input {
-        margin: 0.5em -100% 0.25em 0;
-        width: 100%;
-      }
-
-    </style>
-
-    <div id="container" on-click="{{clickContainer}}">
-      <div id="tags" data-left="0"></div>
-      <input id="input" is="core-input" value="{{value}}" committedValue="{{committedValue}}"
-             on-change="{{changeAction}}"
-             disabled?="{{disabled}}">
+    <div id="container">
+      <input id="input" is="core-input" data-role="tagsinput">
     </div>
 
   </template>
 
-  <script src="paper-tag-input.js"></script>
+  <script src="jquery.js"></script>
+  <script src="../../bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+
+  <script>
+    Polymer({
+      ready: function () {
+        $(this.$.input).tagsinput();
+        $(this.$.input).on('beforeItemAdd', function(event) {
+          console.log(event);
+        });
+        $(this.$.input).on('itemAdded', function(event) {
+          console.log(event);
+        });
+      }
+    });
+  </script>
+
+  <!--script src="paper-tag-input.js"></script-->
 
 </polymer-element>
